@@ -7,6 +7,16 @@
     <link rel="stylesheet" href="styles.css">
     <style>
         /* Önceki stil kodları buraya gelecek */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* En az 300 piksel genişliğinde sütunlar */
+            gap: 20px; /* Resimler arasındaki boşluk */
+        }
+
+        .gallery img {
+            width: 100%; /* Resimlerin genişliği */
+        }
+
         footer {
             background-color: #333333; /* Footer arka plan rengi */
             color: #ffffff; /* Footer metin rengi */
@@ -66,20 +76,6 @@
             padding: 20px;
         }
 
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            gap: 20px; /* Resimler arası boşluk */
-        }
-
-        .gallery img {
-            max-width: calc(33.333% - 20px); /* Galeri genişliğinin 1/3'ü - boşluk */
-            height: auto;
-            margin-bottom: 20px; /* Her satır arası boşluk */
-            cursor: pointer; /* Farenin imleci resmin üzerine geldiğinde değiştir */
-        }
-
         .popup-wrapper {
             display: none;
             position: fixed;
@@ -118,6 +114,18 @@
 
         .close:hover {
             color: #ccc;
+        }
+
+        @media screen and (max-width: 1024px) {
+            .gallery {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* En az 250 piksel genişliğinde sütunlar */
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .gallery {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* En az 200 piksel genişliğinde sütunlar */
+            }
         }
     </style>
 </head>
