@@ -7,6 +7,65 @@
     <link rel="stylesheet" href="styles.css">
     <style>
         /* Önceki stil kodları buraya gelecek */
+        footer {
+            background-color: #333333; /* Footer arka plan rengi */
+            color: #ffffff; /* Footer metin rengi */
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        header {
+            background-color: grey; /* Menü arka plan rengi */
+            padding: 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            color: white; /* Başlık rengi */
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #f5f5f5; /* Menü metin rengi */
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .category-button {
+            background-color: grey; /* kategori Buton arka plan rengi */
+            color: #ffffff; /* Buton metin rengi */
+            border: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .category-button:hover {
+            background-color: #777777; /* Hover durumunda buton arka plan rengi */
+        }
+
+        main {
+            padding: 20px;
+        }
+
         .gallery {
             display: flex;
             flex-wrap: wrap;
@@ -51,9 +110,9 @@
         .close {
             color: white;
             font-size: 40px;
-            position: absolute;
-            top: 20px;
-            right: 20px;
+            position:  absolute;
+            top: 40px;
+            right: 40px;
             cursor: pointer;
         }
 
@@ -76,6 +135,7 @@
     <div class="button-container">
         <button class="category-button" id="araclarButton">Araçlar</button>
         <button class="category-button" id="hayvanlarButton">Hayvanlar</button>
+        <button class="category-button" id="insanlarButton">İnsanlar</button>
     </div>
 
     <main>
@@ -84,8 +144,15 @@
             <div class="gallery" id="gallery">
                 <img src=".\picture\2024-01-26\00001-104268542.png" alt="Araç Resim 1" data-category="araclar">
                 <img src=".\picture\2024-01-26\00002-1455140786.png" alt="Araç Resim 2" data-category="araclar">
+                <img src=".\picture\2024-01-26\00009-3164152145.png" alt="Araç Resim 3" data-category="araclar">
                 <img src=".\picture\2024-01-26\00000-2387098051.png" alt="Hayvan Resim 1" data-category="hayvanlar">
                 <img src=".\picture\2024-01-26\00006-1764779128.png" alt="Hayvan Resim 2" data-category="hayvanlar">
+                <img src=".\picture\2024-01-26\00001-2381372277.png" alt="Hayvan Resim 3" data-category="hayvanlar">
+                <img src=".\picture\2024-01-26\00003-2085437790.png" alt="Hayvan Resim 4" data-category="hayvanlar">
+                <img src=".\picture\2024-01-26\00002-2102094288.png" alt="Hayvan Resim 4" data-category="hayvanlar">
+                <img src=".\picture\2024-01-26\00002-542015361.png" alt="İnsan Resim 1" data-category="insanlar"> <!-- Yeni resim -->
+                <img src=".\picture\2024-01-26\00008-88180260.png" alt="İnsan Resim 2" data-category="insanlar">
+                <img src=".\picture\2024-01-26\00004-3314451728.png" alt="İnsan Resim 2" data-category="insanlar">
             </div>
         </section>
     </main>
@@ -123,6 +190,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             const araclarButton = document.getElementById('araclarButton');
             const hayvanlarButton = document.getElementById('hayvanlarButton');
+            const insanlarButton = document.getElementById('insanlarButton');
             const galleryImages = document.querySelectorAll('.gallery img');
 
             araclarButton.addEventListener('click', function() {
@@ -144,6 +212,17 @@
                     }
                 });
             });
+
+            insanlarButton.addEventListener('click', function() {
+                galleryImages.forEach(function(img) {
+                    if (img.dataset.category === 'insanlar') {
+                        img.style.display = 'block';
+                    } else {
+                        img.style.display = 'none';
+                    }
+                });
+            });
+
 
             galleryImages.forEach(function(img) {
                 img.addEventListener('click', function() {
