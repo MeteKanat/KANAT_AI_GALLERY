@@ -5,6 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Galeri Websitesi</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Önceki stil kodları buraya gelecek */
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px; /* Resimler arası boşluk */
+        }
+
+        .gallery img {
+            max-width: calc(33.333% - 20px); /* Galeri genişliğinin 1/3'ü - boşluk */
+            height: auto;
+            margin-bottom: 20px; /* Her satır arası boşluk */
+            cursor: pointer; /* Farenin imleci resmin üzerine geldiğinde değiştir */
+        }
+
+        .popup-wrapper {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8); /* Opak siyah arka plan */
+            z-index: 999;
+            text-align: center;
+        }
+
+        .popup-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 90%;
+            max-height: 90%;
+            overflow: auto; /* Gerektiğinde kaydırma çubuğu göster */
+        }
+
+        .popup-content img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .close {
+            color: white;
+            font-size: 40px;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #ccc;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -17,22 +73,84 @@
         </nav>
     </header>
     
+    <div class="button-container">
+        <button class="category-button" id="araclarButton">Araçlar</button>
+        <button class="category-button" id="hayvanlarButton">Hayvanlar</button>
+    </div>
+
     <main>
         <section>
             <h2>Galeri</h2>
-            <div class="gallery">
-                <img src=".\picture\2024-01-26\00001-104268542.png" alt="Resim 1">
-                <img src=".\picture\2024-01-26\00002-1455140786.png" alt="Resim 2">
-                <img src=".\picture\2024-01-26\00009-3164152145.png" alt="Resim 3">
-                <!-- Görüntüler buraya eklenebilir -->
+            <div class="gallery" id="gallery">
+                <img src=".\picture\2024-01-26\00001-104268542.png" alt="Araç Resim 1" data-category="araclar">
+                <img src=".\picture\2024-01-26\00002-1455140786.png" alt="Araç Resim 2" data-category="araclar">
+                <img src=".\picture\2024-01-26\00000-2387098051.png" alt="Hayvan Resim 1" data-category="hayvanlar">
+                <img src=".\picture\2024-01-26\00006-1764779128.png" alt="Hayvan Resim 2" data-category="hayvanlar">
             </div>
         </section>
-        
-        <!-- Diğer içerikler buraya eklenebilir -->
     </main>
 
     <footer>
         <p>&copy; 2024 KanatAI</p>
     </footer>
+
+    <div id="popup-wrapper" class="popup-wrapper" onclick="closePopup(event)">
+        <div class="popup-content" onclick="event.stopPropagation()">
+            <span class="close" onclick="closePopup(event)">&times;</span>
+            <img id="popup-image" src="" alt="Popup Resim">
+        </div>
+    </div>
+
+    <script>
+        function openPopup(imageSrc) {
+            var popupWrapper = document.getElementById('popup-wrapper');
+            var popupImage = document.getElementById('popup-image');
+            popupImage.src = imageSrc;
+            popupWrapper.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Popup açıldığında ana sayfayı kaydırmayı engelle
+        }
+
+        function closePopup(event) {
+            var popupWrapper = document.getElementById('popup-wrapper');
+            var popupContent = document.querySelector('.popup-content');
+            if (event.target == popupWrapper || event.target == popupContent || event.target.classList.contains('close')) {
+                popupWrapper.style.display = 'none';
+                document.body.style.overflow = ''; // Popup kapandığında ana sayfayı kaydırmayı tekrar etkinleştir
+            }
+        }
+
+        // Araçlar ve Hayvanlar butonlarına tıklandığında resimleri değiştiren fonksiyon
+        document.addEventListener('DOMContentLoaded', function() {
+            const araclarButton = document.getElementById('araclarButton');
+            const hayvanlarButton = document.getElementById('hayvanlarButton');
+            const galleryImages = document.querySelectorAll('.gallery img');
+
+            araclarButton.addEventListener('click', function() {
+                galleryImages.forEach(function(img) {
+                    if (img.dataset.category === 'araclar') {
+                        img.style.display = 'block';
+                    } else {
+                        img.style.display = 'none';
+                    }
+                });
+            });
+
+            hayvanlarButton.addEventListener('click', function() {
+                galleryImages.forEach(function(img) {
+                    if (img.dataset.category === 'hayvanlar') {
+                        img.style.display = 'block';
+                    } else {
+                        img.style.display = 'none';
+                    }
+                });
+            });
+
+            galleryImages.forEach(function(img) {
+                img.addEventListener('click', function() {
+                    openPopup(this.src);
+                });
+            });
+        });
+    </script>
 </body>
 </html>
