@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galeri Websitesi</title>
+    <title>GenAI Gallery</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         /* Önceki stil kodları buraya gelecek */
+        
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* En az 300 piksel genişliğinde sütunlar */
@@ -95,20 +96,34 @@
             transform: translate(-50%, -50%);
             max-width: 90%;
             max-height: 90%;
-            overflow: auto; /* Gerektiğinde kaydırma çubuğu göster */
+            overflow: none; /* Gerektiğinde kaydırma çubuğu göster */
+            display: flex;
+            align-items: center; /* Dikeyde ortala */
+            justify-content: space-between; /* Yatayda aralık bırak */
         }
 
+
         .popup-content img {
-            max-width: 100%;
-            height: auto;
+            max-width: 90%; /* Resim maksimum genişliği */
+            max-height: 90%; /* Resim maksimum yüksekliği */
+            margin-right: 20px; /* Metin ile resim arasındaki boşluk */
         }
+
+        .popup-caption {
+            max-width: 30%; /* Metin maksimum genişliği */
+            background-color: white(32, 125, 225, 0.8); /* Arkaplan rengi */
+            color: #fff; /* Metin rengi */
+            padding: 10px; /* Kenar boşluğu */
+            border-radius: 5px; /* Köşe yuvarlama */
+        }
+
 
         .close {
             color: white;
             font-size: 40px;
             position:  absolute;
-            top: 40px;
-            right: 40px;
+            top: -40px;
+            right: -40px;
             cursor: pointer;
         }
 
@@ -144,23 +159,58 @@
         <button class="category-button" id="araclarButton">Araçlar</button>
         <button class="category-button" id="hayvanlarButton">Hayvanlar</button>
         <button class="category-button" id="insanlarButton">İnsanlar</button>
+        <button class="category-button" id="fantastikButton">Fantastik</button>
     </div>
 
     <main>
         <section>
-            <h2>Galeri</h2>
+            <div class="centered-text">
+            <center>
+                <p>Resimlere tıklayarak promptları inceleyebilirsiniz</p>
+            </center>
+            </div>
             <div class="gallery" id="gallery">
-                <img src=".\picture\2024-01-26\00001-104268542.png" alt="Araç Resim 1" data-category="araclar">
-                <img src=".\picture\2024-01-26\00002-1455140786.png" alt="Araç Resim 2" data-category="araclar">
-                <img src=".\picture\2024-01-26\00009-3164152145.png" alt="Araç Resim 3" data-category="araclar">
-                <img src=".\picture\2024-01-26\00000-2387098051.png" alt="Hayvan Resim 1" data-category="hayvanlar">
-                <img src=".\picture\2024-01-26\00006-1764779128.png" alt="Hayvan Resim 2" data-category="hayvanlar">
-                <img src=".\picture\2024-01-26\00001-2381372277.png" alt="Hayvan Resim 3" data-category="hayvanlar">
-                <img src=".\picture\2024-01-26\00003-2085437790.png" alt="Hayvan Resim 4" data-category="hayvanlar">
-                <img src=".\picture\2024-01-26\00002-2102094288.png" alt="Hayvan Resim 4" data-category="hayvanlar">
-                <img src=".\picture\2024-01-26\00002-542015361.png" alt="İnsan Resim 1" data-category="insanlar"> <!-- Yeni resim -->
-                <img src=".\picture\2024-01-26\00008-88180260.png" alt="İnsan Resim 2" data-category="insanlar">
-                <img src=".\picture\2024-01-26\00004-3314451728.png" alt="İnsan Resim 2" data-category="insanlar">
+                <img src=".\picture\2024-01-26\00001-104268542.png" alt="Prompt <br> Model:RealVisXL_V3.0" data-category="araclar" data-title="Araç Resmi 1" data-description="cinematic photo of black porshe gt3 rs in los angeles, raining, gloomy, perfect lighting, vibrant, high detailed, epic, movie still, motion blur, film grain <br> Negative prompt: (octane render, render, drawing, anime, bad photo, bad photography:1.3), (worst quality, low quality, blurry:1.2), (bad teeth, deformed teeth, deformed lips), (bad anatomy, bad proportions:1.1), (deformed iris, deformed pupils), (deformed eyes, bad eyes), (deformed face, ugly face, bad face), (deformed hands, bad hands, fused fingers), morbid, mutilated, mutation, disfigured <br> Steps: 8, Sampler: DPM++ SDE Karras, CFG scale: 1.5, Seed: 104268542, Size: 512x512">
+                <img src=".\picture\2024-01-26\00002-1455140786.png" alt="Prompt <br> Model:RealVisXL_V3.0" data-category="araclar"data-title="Araç Resmi 1" data-description="cinematic photo of black porshe gt3 rs in mountain road , raining, gloomy, perfect lighting, vibrant, high detailed, epic, movie still, motion blur, film grain,4k <br>Negative prompt: (octane render, render, drawing, anime, bad photo, bad photography:1.3), (worst quality, low quality, blurry:1.2), (bad teeth, deformed teeth, deformed lips), (bad anatomy, bad proportions:1.1), (deformed iris, deformed pupils), (deformed eyes, bad eyes), (deformed face, ugly face, bad face), (deformed hands, bad hands, fused fingers), morbid, mutilated, mutation <br>Sampler: DPM++ SDE Karras, CFG scale: 1.5, Seed: 1455140786, Size: 512x512">
+                <img src=".\picture\2024-01-26\00009-3164152145.png" alt="Prompt <br> Model:RealVisXL_V3.0" data-category="araclar"data-title="Araç Resmi 1" data-description="cinematic photo of white Porsche in Miami, perfect lighting, vibrant, high detailed, epic, movie still, motion blur, film grain <br> Negative prompt: (octane render, render, drawing, anime, bad photo, bad photography:1.3), (worst quality, low quality, blurry:1.2), (bad teeth, deformed teeth, deformed lips), (bad anatomy, bad proportions:1.1), (deformed iris, deformed pupils), (deformed eyes, bad eyes), (deformed face, ugly face, bad face), (deformed hands, bad hands, fused fingers), morbid, mutilated, mutation <br> Steps: 8, Sampler: DPM++ SDE Karras, CFG scale: 1.5, Seed: 3164152145, Size: 512x512">
+                <img src=".\picture\2024-01-26\00004-27499505.png" alt="Prompt <br> Model:RealVisXL_V3.0" data-category="araclar"data-title="Araç Resmi 1" data-description="cinematic photo of nardo grey Audi RS6 in mountain road , raining, gloomy, perfect lighting, vibrant, high detailed, epic, movie still, motion blur, film grain <br> Negative prompt: (octane render, render, drawing, anime, bad photo, bad photography:1.3), (worst quality, low quality, blurry:1.2), (bad teeth, deformed teeth, deformed lips), (bad anatomy, bad proportions:1.1), (deformed iris, deformed pupils), (deformed eyes, bad eyes), (deformed face, ugly face, bad face), (deformed hands, bad hands, fused fingers), morbid, mutilated, mutation <br> Steps: 8, Sampler: DPM++ SDE Karras, CFG scale: 1.5, Seed: 27499505, Size: 512x512">
+                
+                <img src=".\picture\2024-01-26\00003-3387653732.png" alt="Prompt <br> Model:RealVisXL_V3.0" data-category="araclar"data-title="Araç Resmi 1" data-description="cinematic photo of grey Fiat Doblo in ocean pasific betwen , raining, gloomy, perfect lighting, vibrant, high detailed, epic, movie still, motion blur, film grain <br> Negative prompt: (octane render, render, drawing, anime, bad photo, bad photography:1.3), (worst quality, low quality, blurry:1.2) <br>Steps: 8, Sampler: DPM++ SDE Karras, CFG scale: 1.5, Seed: 3387653732">
+                <!--<img src=".\picture\2024-01-26\00009-3164152145.png" alt="Araç Resim 3" data-category="araclar">-->
+                <!--<img src=".\picture\2024-01-26\00009-3164152145.png" alt="Araç Resim 3" data-category="araclar">-->
+                <!--<img src=".\picture\2024-01-26\00009-3164152145.png" alt="Araç Resim 3" data-category="araclar">-->
+                <!--<img src=".\picture\2024-01-26\00009-3164152145.png" alt="Araç Resim 3" data-category="araclar">-->
+                <!--<img src=".\picture\2024-01-26\00009-3164152145.png" alt="Araç Resim 3" data-category="araclar">-->
+                <!--<img src=".\picture\2024-01-26\00009-3164152145.png" alt="Araç Resim 3" data-category="araclar">-->
+                <!--<img src=".\picture\2024-01-26\00009-3164152145.png" alt="Araç Resim 3" data-category="araclar">-->
+
+                <img src=".\picture\2024-01-26\00000-2387098051.png" alt="Prompt <br> Model:RealVisXL_V3.0" data-category="hayvanlar"data-title="Araç Resmi 1" data-description="PLAIN WHITE BACKGROUND, incredibly cute, incredibly fluffy, incredibly fat tabby cat jumping, concept art, masterpiece, best quality, countryside style, fine art, painting, 8k <br> Negative prompt: Bad anatomy, bad quality, text, signature, watermark, logo, twins, ugly, deformed, noisy, blurry, distorted, grainy <br> Steps: 20, Sampler: DPM++ 2M Karras, CFG scale: 7, Seed: 2387098051, Size: 512x512">
+                <img src=".\picture\2024-01-26\00006-1764779128.png" alt="Prompt <br> Model:RealVisXL_V3.0" data-category="hayvanlar"data-title="Araç Resmi 1" data-description="squirl in the snow in paris (guidance scale 1.3) <br> Steps: 7, Sampler: DPM++ 2M SDE Exponential, CFG scale: 1, Seed: 1764779128, Size: 512x512">
+                <img src=".\picture\2024-01-26\00001-2381372277.png" alt="Prompt <br> Model: v1-5-pruned-emaonly" data-category="hayvanlar"data-title="Araç Resmi 1" data-description="Armored penguins running into battle, weapons in their hands, their faces painted with war paint <br> Steps: 20, Sampler: DPM++ 2M Karras, CFG scale: 7, Seed: 2381372277, Size: 512x512">
+                <img src=".\picture\2024-01-26\00003-2085437790.png" alt="PROMPT <br> Model: RealitiesEdgeXLSDXL_TURBOXLV2" data-category="hayvanlar"data-title="Araç Resmi 1" data-description="4 winged cat, multiple eyes on the head, (masterpiece), (best quality:1.2), (intricate detail), dynamic angle, looking at viewer, (1male), ((solo)), (((full body))), (slender), (((tabaxi))), (((white fur))), ((blue pupils)), (((light armor))), black armor, ((cloak)), mysterious, ((ominous expression)),style Sara Shakeel <br> Negative prompt: fused clothes, poorly drawn clothes, bad anatomy, bad hands, bad legs, missing fingers, extra digit, extra legs, extra feet, fewer digits, cropped, worst quality, low quality, bad art <br> Sampler: DDIM, CFG scale: 5, Seed: 2085437790, Size: 512x512">
+                <img src=".\picture\2024-01-26\00002-2102094288.png" alt="PROMPT <br> Model: RealitiesEdgeXLSDXL_TURBOXLV2" data-category="hayvanlar"data-title="Araç Resmi 1" data-description="4 winged cat, multiple eyes on the head, (masterpiece), (best quality:1.2), (intricate detail), dynamic angle, looking at viewer, (1male), ((solo)), (((full body))), (slender), (((tabaxi))), (((white fur))), ((blue pupils)), (((light armor))), black armor, ((cloak)), mysterious, ((ominous expression)),style Sara Shakeel <br> Negative prompt: fused clothes, poorly drawn clothes, bad anatomy, bad hands, bad legs, missing fingers, extra digit, extra legs, extra feet, fewer digits, cropped, worst quality, low quality, bad art  <br> Steps: 20, Sampler: DDIM, CFG scale: 5, Seed: 2102094288, Size: 512x512">
+                <img src=".\picture\2024-01-26\00002-542015361.png" alt="PROMPT <br> Model: RealVisXL_V3.0" data-category="insanlar"data-description="worrior, closeup portrait photo of man in combat clothes in 1780, face, long hair, slim body, high quality, film grain <br>  Negative prompt: (octane render, render, drawing, anime, bad photo, bad photography:1.3), (worst quality, low quality, blurry:1.2), (bad teeth, deformed teeth, deformed lips), (bad anatomy, bad proportions:1.1), (deformed iris, deformed pupils), (deformed eyes, bad eyes), (deformed face, ugly face, bad face), (deformed hands, bad hands, fused fingers), morbid, mutilated, mutation, disfigure <br> Steps: 8, Sampler: DPM++ 2M Karras, CFG scale: 2, Seed: 542015361, Size: 512x512"> 
+                <img src=".\picture\2024-01-26\00008-88180260.png" alt="PROMPT <br> Model: realvisxlV30Turbo_v30" data-category="insanlar"data-description="b&w portrait photo of 54 y.o man, coastline, overcast weather, wind, waves, soft lighting, high quality, film grain, Fujifilm XT3 <br> Negative prompt: (octane render, render, drawing, anime, bad photo, bad photography:1.3), (worst quality, low quality, blurry:1.2), (bad teeth, deformed teeth, deformed lips), (bad anatomy, bad proportions:1.1), (deformed iris, deformed pupils), (deformed eyes, bad eyes), (deformed face, ugly face, bad face), (deformed hands, bad hands, fused fingers), morbid, mutilated, mutation, disfigured <br> Steps: 8, Sampler: DPM++ SDE Karras, CFG scale: 2, Seed: 88180260, Size: 512x512">
+                <img src=".\picture\2024-01-26\00004-3314451728.png" alt="PROMPT <br> Model: RealVisXL_V3.0 " data-category="insanlar"data-description="ottoman worrior , man in combat clothes in 1453, face, muscaller body, high quality, film grain <br> Negative prompt: Bad anatomy, bad quality, text, signature, watermark, logo, twins, ugly, deformed, noisy, blurry, distorted, grainy <br> Steps: 20, Sampler: DPM++ 2M Karras, CFG scale: 7, Seed: 3314451728, Size: 512x512">
+                <img src=".\picture\2024-01-26\00003-1698298186.png" alt="PROMPT <br> Model: RealVisXL_V3.0 " data-category="insanlar"data-description="worrior, closeup portrait photo of man in combat clothes in 1453, face, long hair, slim body, high quality, film grain  <br> Negative prompt: (octane render, render, drawing, anime, bad photo, bad photography:1.3), (worst quality, low quality, blurry:1.2), (bad teeth, deformed teeth, deformed lips), (bad anatomy, bad proportions:1.1), (deformed iris, deformed pupils), (deformed eyes, bad eyes), (deformed face, ugly face, bad face), (deformed hands, bad hands, fused fingers), morbid, mutilated, mutation, disfigured <br> Steps: 8, Sampler: DPM++ 2M Karras, CFG scale: 2, Seed: 1698298186, Size: 512x512">
+                <img src=".\picture\2024-01-26\00009-1673386671.png" alt="PROMPT <br> Model: RealVisXL_V3.0 " data-category="insanlar"data-description="warren buffet sitting office,his table on the burgers and papers and coke cola <br> Negative prompt: disfigured, deformed, distorted, poorly drawn, bad anatomy, wrong anatomy, extra limb, missing limb, floating limbs, mutated hands, mutated fingers, disconnected limbs, mutation, mutated, ugly, disgusting, title, text, letters <br> Steps: 9, Sampler: DPM++ 2M Karras, CFG scale: 1, Seed: 1673386671, Size: 512x512" >
+                <img src=".\picture\2024-01-26\00003-72052091.png" alt="PROMPT <br> Model: v1-5-pruned-emaonly " data-category="insanlar"data-description="Penguins in the Second World War, with helmets on their heads, boots on their feet, rifles in their hands <br> Steps: 134, Sampler: DPM++ 2M Karras, CFG scale: 7, Seed: 72052091, Size: 512x512">
+                
+                
+                <img src=".\picture\2024-01-26\canavar.png" alt="PROMPT <br> Model: stable-diffusion-xl-base-1.0 " data-category="fantastik"data-description="Oil painting, heavy brush strokes, cinematic film still, Create a masterful masterpiece of monster creatures with ultra-detailed concept art <br> Negative_prompt = nsfw, lowres, (bad), text, error, fewer, extra, missing, worst quality, jpeg artifacts, low quality, watermark, unfinished, displeasing, oldest, early, chromatic aberration, signature, extra digits, artistic error, username, scan, [abstract] ">
+                <img src=".\picture\2024-01-26\trex.png" alt="PROMPT <br> Model: stable-diffusion-xl-base-1.0 " data-category="fantastik"data-description="dark fantasy art style, knight fighting a giant fantasy t-rex, burned city in background, highly detailed, morning dawn, (mystical dense fog), oil and watercolor painting, epic scene, (dense smoke by Kim Keever), dark, moody, dark fantasy in style of Frank Frazetta, Bosstyle">
+                
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             </div>
         </section>
     </main>
@@ -172,72 +222,101 @@
     <div id="popup-wrapper" class="popup-wrapper" onclick="closePopup(event)">
         <div class="popup-content" onclick="event.stopPropagation()">
             <span class="close" onclick="closePopup(event)">&times;</span>
-            <img id="popup-image" src="" alt="Popup Resim">
+            <div class="popup-image-container">
+                <img id="popup-image" src="" alt="Popup Resim">
+            </div>
+            <div id="popup-caption" class="popup-caption"></div>
         </div>
     </div>
+<script>
 
-    <script>
-        function openPopup(imageSrc) {
-            var popupWrapper = document.getElementById('popup-wrapper');
-            var popupImage = document.getElementById('popup-image');
-            popupImage.src = imageSrc;
-            popupWrapper.style.display = 'block';
-            document.body.style.overflow = 'hidden'; // Popup açıldığında ana sayfayı kaydırmayı engelle
+
+
+
+
+
+
+
+
+
+
+    function openPopup(imageSrc, title, description) {
+        var popupWrapper = document.getElementById('popup-wrapper');
+        var popupImage = document.getElementById('popup-image');
+        var popupCaption = document.getElementById('popup-caption');
+
+        popupImage.src = imageSrc;
+        popupCaption.innerHTML = '<h3>' + title + '</h3><p>' + description + '</p>';
+        popupWrapper.style.display = 'block';
+        document.body.style.overflow = 'hidden'; // Ana sayfada scroll bar'ı gizle
+        
+        var body = document.body;
+        var scrollBarWidth = window.innerWidth - document.documentElement.clientWidth; // Scroll bar genişliğini hesapla
+
+        if (scrollBarWidth > 0) {
+            body.style.paddingRight = scrollBarWidth + 'px'; // Sayfa sağ tarafına padding ekle
         }
 
-        function closePopup(event) {
-            var popupWrapper = document.getElementById('popup-wrapper');
-            var popupContent = document.querySelector('.popup-content');
-            if (event.target == popupWrapper || event.target == popupContent || event.target.classList.contains('close')) {
-                popupWrapper.style.display = 'none';
-                document.body.style.overflow = ''; // Popup kapandığında ana sayfayı kaydırmayı tekrar etkinleştir
-            }
+        body.style.overflow = 'hidden'; // Ana sayfada scroll bar'ı gizle
+
+        var popupImage = document.getElementById('popup-image');
+        popupImage.src = imageSrc;
+        popupWrapper.style.display = 'block';
+    }
+
+    function closePopup(event) {
+        var popupWrapper = document.getElementById('popup-wrapper');
+        var body = document.body;
+        body.style.overflow = ''; // Ana sayfada scroll bar'ı göster
+
+        var popupContent = document.querySelector('.popup-content');
+        if (event.target == popupWrapper || event.target == popupContent || event.target.classList.contains('close')) {
+            popupWrapper.style.display = 'none';
+            body.style.paddingRight = '0'; // Sayfa sağ tarafındaki padding'i kaldır
         }
+    }
 
-        // Araçlar ve Hayvanlar butonlarına tıklandığında resimleri değiştiren fonksiyon
-        document.addEventListener('DOMContentLoaded', function() {
-            const araclarButton = document.getElementById('araclarButton');
-            const hayvanlarButton = document.getElementById('hayvanlarButton');
-            const insanlarButton = document.getElementById('insanlarButton');
-            const galleryImages = document.querySelectorAll('.gallery img');
+    // Araçlar ve Hayvanlar butonlarına tıklandığında resimleri değiştiren fonksiyon
+    document.addEventListener('DOMContentLoaded', function() {
+        const galleryImages = document.querySelectorAll('.gallery img');
+        const araclarButton = document.getElementById('araclarButton');
+        const hayvanlarButton = document.getElementById('hayvanlarButton');
+        const insanlarButton = document.getElementById('insanlarButton');
+        const fantastikButton = document.getElementById('fantastikButton');
 
-            araclarButton.addEventListener('click', function() {
-                galleryImages.forEach(function(img) {
-                    if (img.dataset.category === 'araclar') {
-                        img.style.display = 'block';
-                    } else {
-                        img.style.display = 'none';
-                    }
-                });
-            });
-
-            hayvanlarButton.addEventListener('click', function() {
-                galleryImages.forEach(function(img) {
-                    if (img.dataset.category === 'hayvanlar') {
-                        img.style.display = 'block';
-                    } else {
-                        img.style.display = 'none';
-                    }
-                });
-            });
-
-            insanlarButton.addEventListener('click', function() {
-                galleryImages.forEach(function(img) {
-                    if (img.dataset.category === 'insanlar') {
-                        img.style.display = 'block';
-                    } else {
-                        img.style.display = 'none';
-                    }
-                });
-            });
-
-
-            galleryImages.forEach(function(img) {
-                img.addEventListener('click', function() {
-                    openPopup(this.src);
-                });
+        // Resimlere tıklandığında popup'ı açan fonksiyon
+        galleryImages.forEach(function(img) {
+            img.addEventListener('click', function() {
+                openPopup(this.src, this.alt, this.getAttribute('data-description'));
             });
         });
-    </script>
-</body>
-</html>
+
+        // Kategori butonlarına tıklandığında resimleri filtreleyen fonksiyonlar
+        araclarButton.addEventListener('click', function() {
+            filterImages('araclar');
+        });
+
+        hayvanlarButton.addEventListener('click', function() {
+            filterImages('hayvanlar');
+        });
+
+        insanlarButton.addEventListener('click', function() {
+            filterImages('insanlar');
+        });
+
+        fantastikButton.addEventListener('click', function() {
+            filterImages('fantastik');
+        });
+
+        // Resimleri filtreleyen yardımcı fonksiyon
+        function filterImages(category) {
+            galleryImages.forEach(function(img) {
+                if (img.dataset.category === category) {
+                    img.style.display = 'block';
+                } else {
+                    img.style.display = 'none';
+                }
+            });
+        }
+    });
+</script>
