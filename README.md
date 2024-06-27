@@ -1,4 +1,4 @@
-https://metekanat.github.io/KANAT_GEN_AI/
+https://metekanat.github.io/KANAT_AI_GALLERY/
 web sitemiz ChatGPT kullanılarak inşaa edilmiştir, daha etkili olması için elle düzenlemeler yapılmıştır.
 resimlerin bir kısmı stable diffusion automatic 1111 aracıyla kalanları stable-diffusion-xl-base-1.0 modeli ile yapılmıştır.
 **resimlerin promptları için web sitemizde resimlere tıklamanız yeterlidir**
